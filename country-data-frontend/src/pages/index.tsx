@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { CountryList } from '../components/CountryList';
 import { SearchBar } from '../components/SearchBar';
+import { RegionFilter } from '../components/RegionFilter';
 import { Country } from '../types/Country';
 
 export default function Home() {
@@ -9,6 +10,7 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
+  const [selectedRegion, setSelectedRegion] = useState('');
 
   useEffect(() => {
     const fetchCountries = async () => {
@@ -33,8 +35,14 @@ export default function Home() {
 
   return (
     <div className="p-6">
-      <SearchBar searchTerm={searchTerm} onSearchChange={setSearchTerm} />
-
+      <div className="flex space-x-4">
+      <div className="">
+          <SearchBar searchTerm={searchTerm} onSearchChange={setSearchTerm} />
+        </div>
+        <div className="">
+          <RegionFilter selectedRegion={selectedRegion} onRegionChange={setSelectedRegion} />
+        </div>
+      </div>
       <CountryList countries={filteredCountries} />
     </div>
   );

@@ -5,19 +5,19 @@ interface SearchBarProps {
     onSearchChange: (value: string) => void;
   }
 
-export const SearchBar: React.FC<SearchBarProps> = ({ searchTerm, onSearchChange }) => {
+export const SearchBar = ({ searchTerm, onSearchChange }: SearchBarProps ) => {
     return (
-        <div className="mb-4">
-            <label className="block text-gray-700">
-            Search for a Country
+        <div className="mb-6">
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Search Countries
             </label>
             <input
-            id="search"
-            type="text"
-            placeholder="Enter country name"
-            className="border border-gray-300"
-            value={searchTerm}
-            onChange={(e) => onSearchChange(e.target.value)}
+              id="search"
+              type="text"
+              placeholder="Search by name, capital, or timezone"
+              className="border border-gray-300 px-4 py-2"
+              value={searchTerm}
+              onChange={(e) => onSearchChange(e.target.value)}
             />
       </div>
     )
