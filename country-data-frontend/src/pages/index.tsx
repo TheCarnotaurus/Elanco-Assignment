@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
 import { CountryList } from '../components/CountryList';
 import { SearchBar } from '../components/SearchBar';
 import { RegionFilter } from '../components/RegionFilter';

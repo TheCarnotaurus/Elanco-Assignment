@@ -7,7 +7,9 @@ const REST_COUNTRIES_API = 'https://restcountries.com/v3.1';
 // Get all countries
 export const getCountries = async (req: Request, res: Response) => {
     const response = await axios.get<Country[]>(`${REST_COUNTRIES_API}/all`);
+    console.log('Retrieved all countries', response.data);
     const countries = response.data.map((country: Country) => ({
+      code: country.cca3,
       name: country.name.common,
       flag: country.flags.svg,
       region: country.region,
@@ -21,6 +23,7 @@ export const getCountryByCode = async (req: Request, res: Response) => {
     const response = await axios.get<Country[]>(`${REST_COUNTRIES_API}/alpha/${code}`);
     const country = response.data[0];
     res.json({
+      code: country.cca3,
       name: country.name.common,
       flag: country.flags.svg,
       population: country.population,
@@ -34,7 +37,14 @@ export const getCountryByCode = async (req: Request, res: Response) => {
 export const filterCountriesByRegion = async (req: Request, res: Response) => {
   const { region } = req.params;
     const response = await axios.get<Country[]>(`${REST_COUNTRIES_API}/all`);
-    const countries = response.data.filter((country: Country) => country.region === region);
+    const countries = response.data
+    .filter((country: Country) => country.region === region)
+    .map((country: Country) => ({
+      code: country.cca3,
+      name: country.name.common,
+      flag: country.flags.svg,
+      region: country.region,
+    }));
     res.json(countries);
 };
 
