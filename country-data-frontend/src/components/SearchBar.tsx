@@ -1,24 +1,63 @@
 import React from "react";
 
 interface SearchBarProps {
-    searchTerm: string;
-    onSearchChange: (value: string) => void;
-  }
+  countrySearch: string;
+  capitalSearch: string;
+  timezoneSearch: string;
+  onCountrySearchChange: (value: string) => void;
+  onCapitalSearchChange: (value: string) => void;
+  onTimezoneSearchChange: (value: string) => void;
+}
 
-export const SearchBar = ({ searchTerm, onSearchChange }: SearchBarProps ) => {
+export const SearchBar = ({ 
+  countrySearch, 
+  capitalSearch, 
+  timezoneSearch, 
+  onCountrySearchChange, 
+  onCapitalSearchChange, 
+  onTimezoneSearchChange 
+}: SearchBarProps ) => {
     return (
-        <div className="mb-6">
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+        <div className="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0">
+          <div className="flex-1">
+            <label className="w-fullblock text-sm font-medium text-gray-700 mb-2">
               Search Countries
             </label>
             <input
               id="search"
               type="text"
-              placeholder="Search by name, capital, or timezone"
-              className="border border-gray-300 px-4 py-2"
-              value={searchTerm}
-              onChange={(e) => onSearchChange(e.target.value)}
+              placeholder="Country name"
+              className="w-full border border-gray-300 px-4 py-2"
+              value={countrySearch}
+              onChange={(e) => onCountrySearchChange(e.target.value)}
             />
+          </div>
+          <div className="flex-1">
+            <label htmlFor="capital-search" className="block text-sm font-medium text-gray-700 mb-2">
+                Search by Capital
+            </label>
+            <input
+                id="capital-search"
+                type="text"
+                placeholder="Enter capital city"
+                className="w-full border border-gray-300 px-4 py-2"
+                value={capitalSearch}
+                onChange={(e) => onCapitalSearchChange(e.target.value)}
+            />
+          </div>
+          <div className="flex-1">
+            <label htmlFor="timezone-search" className="block text-sm font-medium text-gray-700 mb-2">
+                Search by Timezone
+            </label>
+            <input
+                id="timezone-search"
+                type="text"
+                placeholder="Enter timezone (e.g., UTC+05:30)"
+                className="w-full border border-gray-300 px-4 py-2"
+                value={timezoneSearch}
+                onChange={(e) => onTimezoneSearchChange(e.target.value)}
+            />
+          </div>
       </div>
     )
 };

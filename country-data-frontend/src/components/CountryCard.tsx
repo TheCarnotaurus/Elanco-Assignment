@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 
 interface CountryCardProps {
     name: string;
@@ -9,11 +10,15 @@ interface CountryCardProps {
 export const CountryCard = ({ name, flag, region }: CountryCardProps) => (
     <div className="bg-white rounded-lg shadow-md p-4 flex flex-col items-center">
         {flag ? (
-            <img
-                className="w-16 h-16 object-contain"
-                src={flag}
-                alt={`Flag of ${name}`}
-            />
+            <div className="relative w-16 h-16">
+                <Image
+                    className="object-contain"
+                    src={flag}
+                    alt={`Flag of ${name}`}
+                    fill
+                    sizes="64px"
+                />
+            </div>
         ) : (
             <p className="text-center">No Flag Available</p>
         )}

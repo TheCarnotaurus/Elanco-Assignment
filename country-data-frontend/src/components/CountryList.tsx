@@ -8,7 +8,7 @@ interface CountryListProps {
 
 export const CountryList = ({ countries }: CountryListProps) => {
     return (
-        <div className="grid grid-cols-4 gap-4">
+        <div className="grid md:grid-cols-4 sm:grid-cols-2 gap-4">
             {countries.length > 0 ? (
                 countries.map((country) => (
                     <CountryCard key={country.name} {...country} />

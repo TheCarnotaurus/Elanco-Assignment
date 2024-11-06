@@ -14,7 +14,7 @@ export const RegionFilter = ({ selectedRegion, onRegionChange }: RegionFilterPro
                 Filter by Region
             </label>
             <select
-                className="border border-gray-300 px-4 py-2"
+                className="w-full border border-gray-300 px-4 py-2"
                 value={selectedRegion}
                 onChange={(e) => onRegionChange(e.target.value)}
             >
