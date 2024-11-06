@@ -11,8 +11,8 @@ interface CountryCardProps {
 
 export const CountryCard = ({ code, name, flag, region }: CountryCardProps) => {
   return (
-        <Link href={`/country/${encodeURIComponent(code)}`}>
-            <div className="bg-white rounded-lg shadow-md p-4 flex flex-col items-center">
+        <Link href={`/countries/${encodeURIComponent(code)}`}>
+            <div className="bg-white rounded-lg shadow-md p-4 flex flex-col items-center transition-all duration-300 ease-in-out hover:shadow-lg">
                 {flag ? (
                     <div className="relative w-16 h-16">
                         <Image
