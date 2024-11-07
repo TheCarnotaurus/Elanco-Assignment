@@ -4,7 +4,7 @@ import Image from "next/image";
 import { ArrowLeftIcon } from "@heroicons/react/20/solid";
 import { countryService } from "../../services/countryService";
 import { Country, Currency } from "../../types/Country";
-import styles from "./CountryDetails.module.css";
+import { getCurrentTime } from "../../utils/timeUtils";
 
 export default function CountryDetails() {
   const router = useRouter();
@@ -71,9 +71,16 @@ export default function CountryDetails() {
             {country.name}
           </h1>
 
+          <p className="text-xl text-center text-gray-600 mb-6">
+            Current Time: {getCurrentTime(country.timezones)}
+          </p>
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <InfoItem label="Region" value={country.region} />
-            <InfoItem label="Capital" value={country.capital} />
+            <InfoItem
+              label="Capital"
+              value={country.capital ? country.capital.join(", ") : "N/A"}
+            />
             <InfoItem
               label="Population"
               value={country.population.toLocaleString()}
@@ -91,6 +98,7 @@ export default function CountryDetails() {
                 )
                 .join(", ")}
             />
+            <InfoItem label="Timezones" value={country.timezones.join(", ")} />
           </div>
         </div>
       </div>
